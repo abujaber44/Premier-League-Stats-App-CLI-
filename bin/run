@@ -1,0 +1,7 @@
+#!/Users/mjaber/.rvm/rubies/ruby-2.6.1/bin/ruby -W0
+
+require_relative "../config/environment.rb"
+
+cli = CLI.new
+
+cli.run
