@@ -9,9 +9,7 @@ def fetch_team_by_id(id)
   teams = make_request(uri)
    if teams[0]
     Team.new(teams[0])
-    else
-     puts "Couldn't find a team with that name...".colorize(:red)
-    end
+   end
 end
 
 def fetch_all_teams
@@ -21,7 +19,6 @@ def fetch_all_teams
     puts team["team_name"]
   end
 end 
-
 
 def make_request(uri)
   response = Net::HTTP.get_response(uri)

@@ -24,6 +24,7 @@ class CLI
   end
 
   def main_menu
+    @x = nil 
     puts "To start please choose one of the following:"
     puts "1. Enter a team name"
     puts "2. List all teams"
@@ -43,17 +44,21 @@ class CLI
     end
   end
 
-
   def enter_team_name
     print "Please enter a team name ".colorize(:blue)
     input = gets.chomp
-    @@teams.each do |team_name, id|
-      if input.downcase == team_name.downcase
-        @x = id  
+      @@teams.each do |team_name, id|
+    if input.downcase == team_name.downcase
+      @x = id 
       end 
     end 
-     @team = @api.fetch_team_by_id(@x)
-     team_menu
+      if @x != nil 
+      @team = @api.fetch_team_by_id(@x) 
+      team_menu
+      else
+        puts "Couldn't find a team with that name...".colorize(:red)
+        main_menu
+      end 
   end 
     
   def team_menu
@@ -89,7 +94,7 @@ class CLI
      player = JSON.pretty_generate(player_info)
      puts player
 
-        return_to_menu
+      return_to_menu
     
     else #if input is = help
     @team.players.each do |player|
