@@ -75,7 +75,7 @@ class CLI
       return_to_menu
     elsif @user_input_1 == "2"
       youngest_or_oldest_player
-        return_to_menu
+      return_to_menu
     elsif @user_input_1 == "3"
       display_stats_for_a_player
     elsif @user_input_1 == "4"
@@ -87,33 +87,38 @@ class CLI
   end 
 
   def display_stats_for_a_player
-    print "please enter a player name or type help to list all players ".colorize(:green)
+    print "please enter a player name or type help to list all players ".colorize(:blue)
     input = gets.chomp
     if input != "help" 
      player_info = @team.players.find {|x| x["player_name"].downcase == input.downcase }
+     if player_info == nil 
+      puts "The player you entered does not belong to this team".colorize(:red)
+     else
      player = JSON.pretty_generate(player_info)
-     puts player
-
-      return_to_menu
-    
+     puts player.colorize(:green)
+     end 
+    return_to_menu
     else #if input is = help
     @team.players.each do |player|
     puts "#{player["player_name"]}"   
      end #each.do
-    puts "Please enter a player name ".colorize(:green)
+    puts "Please enter a player name ".colorize(:blue)
     input = gets.chomp  
      player_info = @team.players.find {|x| x["player_name"].downcase == input.downcase }
+     if player_info == nil 
+      puts "The player you entered does not belong to this team".colorize(:red)
+     else
      player = JSON.pretty_generate(player_info)
-     puts player
-
-      return_to_menu
+     puts player.colorize(:green)
+     end 
+    return_to_menu
     end #if statement   
   end #display_stats_for_a_player
 
   def list_all_teams
     all_teams = @api.fetch_all_teams
     enter_team_name
-  end #list_all_teams
+  end 
 
   def return_to_menu
     puts "Press 1 to go back to main menu, 2 for team menu, or 3 to exit".colorize(:yellow)
@@ -128,7 +133,7 @@ class CLI
     else 
       puts "Invalid input".colorize(:red)
         return_to_menu
-    end #if statement
+    end 
   end    
   
   def top_scorer 
@@ -136,7 +141,7 @@ class CLI
     top_scorer_name_1 = (top_scorer_name[0], top_scorer_name[1] = top_scorer_name[1], top_scorer_name[0]).join(" ")
     top_scorer_goals = @team.players.max_by {|x| x["player_goals"].to_i}["player_goals"]
     puts "#{top_scorer_name_1}. He scored #{top_scorer_goals} goals.".colorize(:green) 
-  end #top_scorer
+  end 
 
   def youngest_or_oldest_player
     puts "Please choose one of the following:"
@@ -151,23 +156,23 @@ class CLI
     else 
       puts "Invalid input".colorize(:red)
         return_to_menu
-    end #if statement
-  end #youngest_or_oldest_player
+    end 
+  end 
 
   def youngest_player
     youngest_player_name = @team.players.min_by {|x| x["player_age"].to_i}["player_name"].split 
     youngest_player_name_1 = (youngest_player_name[0], youngest_player_name[1] = youngest_player_name[1], youngest_player_name[0]).join(" ")
     youngest_player_age = @team.players.min_by {|x| x["player_age"].to_i}["player_age"]
     puts "#{youngest_player_name_1}. He is #{youngest_player_age} years old.".colorize(:green)
-  end #youngest_player
+  end 
 
   def oldest_player
     oldest_player_name = @team.players.max_by {|x| x["player_age"].to_i}["player_name"].split
     oldest_player_name_1 = (oldest_player_name[0], oldest_player_name[1] = oldest_player_name[1], oldest_player_name[0]).join(" ")
     oldest_player_age = @team.players.max_by {|x| x["player_age"].to_i}["player_age"]
     puts "#{oldest_player_name_1}. He is #{oldest_player_age} years old.".colorize(:green)
-  end #oldest_player
+  end 
 
-end #Class CLI
+end 
 
 
