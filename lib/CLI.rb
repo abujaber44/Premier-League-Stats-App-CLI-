@@ -98,7 +98,7 @@ class CLI
     
     else #if input is = help
     @team.players.each do |player|
-      puts "#{player["player_name"]}"    
+    puts "#{player["player_name"]}"   
      end #each.do
     puts "Please enter a player name ".colorize(:green)
     input = gets.chomp  
@@ -132,9 +132,10 @@ class CLI
   end    
   
   def top_scorer 
-    top_scorer_name = @team.players.max_by {|x| x["player_goals"].to_i}["player_name"]
+    top_scorer_name = @team.players.max_by {|x| x["player_goals"].to_i}["player_name"].split 
+    top_scorer_name_1 = (top_scorer_name[0], top_scorer_name[1] = top_scorer_name[1], top_scorer_name[0]).join(" ")
     top_scorer_goals = @team.players.max_by {|x| x["player_goals"].to_i}["player_goals"]
-    puts "#{top_scorer_name}. He scored #{top_scorer_goals} goals.".colorize(:green) 
+    puts "#{top_scorer_name_1}. He scored #{top_scorer_goals} goals.".colorize(:green) 
   end #top_scorer
 
   def youngest_or_oldest_player
@@ -154,15 +155,17 @@ class CLI
   end #youngest_or_oldest_player
 
   def youngest_player
-    youngest_player_name = @team.players.min_by {|x| x["player_age"].to_i}["player_name"]
+    youngest_player_name = @team.players.min_by {|x| x["player_age"].to_i}["player_name"].split 
+    youngest_player_name_1 = (youngest_player_name[0], youngest_player_name[1] = youngest_player_name[1], youngest_player_name[0]).join(" ")
     youngest_player_age = @team.players.min_by {|x| x["player_age"].to_i}["player_age"]
-    puts "#{youngest_player_name}. He is #{youngest_player_age} years old.".colorize(:green)
+    puts "#{youngest_player_name_1}. He is #{youngest_player_age} years old.".colorize(:green)
   end #youngest_player
 
   def oldest_player
-    oldest_player_name = @team.players.max_by {|x| x["player_age"].to_i}["player_name"]
+    oldest_player_name = @team.players.max_by {|x| x["player_age"].to_i}["player_name"].split
+    oldest_player_name_1 = (oldest_player_name[0], oldest_player_name[1] = oldest_player_name[1], oldest_player_name[0]).join(" ")
     oldest_player_age = @team.players.max_by {|x| x["player_age"].to_i}["player_age"]
-    puts "#{oldest_player_name}. He is #{oldest_player_age} years old.".colorize(:green)
+    puts "#{oldest_player_name_1}. He is #{oldest_player_age} years old.".colorize(:green)
   end #oldest_player
 
 end #Class CLI
