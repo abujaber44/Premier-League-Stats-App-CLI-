@@ -38,13 +38,13 @@ Please choose one of the following:
 
 ```
 
-If you choose number 3, you will be asked to type a player name or list all players for that team
+If you choose number 3, you will be asked to type a player name or list all players to select one
 
-```
 
 ## Built With
 
 * Ruby
 
 ## Authors
+
 * **Muhannad Jaber** - [Github](https://github.com/abujaber44)
