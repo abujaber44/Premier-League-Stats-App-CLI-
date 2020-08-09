@@ -1,6 +1,6 @@
 # Premier League Statistics CLI
 
-A command-line interface that retrieves data from "www.apifootball.com" API about the English Premier League 2019/2020. Built as portfolio project requirement for Flatiron School Full-stack Web development program.
+A command-line interface that retrieves data from an API provided by "www.apifootball.com" about the English Premier League 2019/2020. Built as portfolio project requirement for Flatiron School Full-stack Web development program.
 
 ## Getting Started
 
