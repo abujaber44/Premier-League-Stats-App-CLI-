@@ -52,17 +52,17 @@ class CLI
       @x = id 
       end 
     end 
-      if @x != nil 
-      @team = @api.fetch_team_by_id(@x) 
-      team_menu
-      else
-        puts "Couldn't find a team with that name...".colorize(:red)
-        main_menu
-      end 
+     if @x != nil 
+       @team = @api.fetch_team_by_id(@x) 
+       team_menu
+     else
+       puts "Couldn't find a team with that name...".colorize(:red)
+       main_menu
+     end 
   end 
     
   def team_menu
-     puts "Please choose on of the following:"
+     puts "Please choose one of the following:"
      puts "1. Top Scorer"
      puts "2. Oldest or Youngest player"
      puts "3. Display all stats for a specific player"
@@ -132,7 +132,7 @@ class CLI
       exit 
     else 
       puts "Invalid input".colorize(:red)
-        return_to_menu
+      return_to_menu
     end 
   end    
   
@@ -155,7 +155,7 @@ class CLI
       oldest_player
     else 
       puts "Invalid input".colorize(:red)
-        return_to_menu
+      return_to_menu
     end 
   end 
 
