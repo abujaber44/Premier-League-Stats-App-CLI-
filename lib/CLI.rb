@@ -53,7 +53,7 @@ class CLI
       end 
     end 
      if @x != nil 
-       @team = @api.fetch_team_by_id(@x) 
+       @team = @api.fetch_team_by_id(@x)  
        team_menu
      else
        puts "Couldn't find a team with that name...".colorize(:red)
@@ -88,32 +88,30 @@ class CLI
 
   def display_stats_for_a_player
     print "please enter a player name or type help to list all players ".colorize(:blue)
-    input = gets.chomp
-    if input != "help" 
-     player_info = @team.players.find {|x| x["player_name"].downcase == input.downcase }
-     if player_info == nil 
-      puts "The player you entered does not belong to this team".colorize(:red)
-     else
-     player = JSON.pretty_generate(player_info)
-     puts player.colorize(:green)
-     end 
-    return_to_menu
-    else #if input is = help
+    @input = gets.chomp
+    if @input != "help" 
+      player_info
+      return_to_menu
+    else 
     @team.players.each do |player|
     puts "#{player["player_name"]}"   
-     end #each.do
+     end 
     puts "Please enter a player name ".colorize(:blue)
-    input = gets.chomp  
-     player_info = @team.players.find {|x| x["player_name"].downcase == input.downcase }
+    @input = gets.chomp  
+      player_info
+      return_to_menu
+    end    
+  end 
+
+  def player_info
+    player_info = @team.players.find {|x| x["player_name"].downcase == @input.downcase }
      if player_info == nil 
       puts "The player you entered does not belong to this team".colorize(:red)
      else
      player = JSON.pretty_generate(player_info)
      puts player.colorize(:green)
      end 
-    return_to_menu
-    end #if statement   
-  end #display_stats_for_a_player
+  end 
 
   def list_all_teams
     all_teams = @api.fetch_all_teams
